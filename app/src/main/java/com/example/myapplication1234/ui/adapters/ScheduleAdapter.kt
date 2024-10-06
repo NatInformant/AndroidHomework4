@@ -1,5 +1,6 @@
 package com.example.myapplication1234.ui.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ class ScheduleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun submitValue(list: List<ScheduleListItem>) {
         data = list
     }
+
     override fun getItemCount() = data.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -28,8 +30,9 @@ class ScheduleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             ScheduleViewType.DayTitle.ordinal -> {
                 val binding = DayTitleElementBinding.inflate(layoutInflater, parent, false)
-                DayTitleElementViewHolder(binding)
+                DayTitleElementViewHolder(parent.context, binding)
             }
+
             else -> {
                 error("There is now such type for list element")
             }
@@ -49,6 +52,7 @@ class ScheduleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is LessonElementViewHolder -> {
                 holder.onBind(data[position] as LessonListItem)
             }
+
             is DayTitleElementViewHolder -> {
                 holder.onBind(data[position] as ScheduleListItem.DayTitleListItem)
             }
@@ -61,19 +65,20 @@ class ScheduleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun onBind(lessonItem: LessonListItem) {
             binding.lessonName.text = lessonItem.lessonName
 
-            if(lessonItem.lessonTime == ""){
+            if (lessonItem.lessonTime == "") {
                 binding.lessonTime.visibility = View.GONE
-            } else{
+            } else {
                 binding.lessonTime.text = lessonItem.lessonTime
             }
         }
     }
 
     class DayTitleElementViewHolder(
+        private val context: Context,
         private val binding: DayTitleElementBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(dayTitleItem: ScheduleListItem.DayTitleListItem) {
-            binding.dayTitle.text = dayTitleItem.title
+            binding.dayTitle.text = context.getText(dayTitleItem.dayOfWeek.dayOfWeekNameId)
         }
     }
 }

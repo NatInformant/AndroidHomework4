@@ -3,6 +3,6 @@ package com.example.myapplication1234.models
 interface ScheduleListItem {
     @JvmInline
     value class DayTitleListItem(
-        val title: String
+        val dayOfWeek: MyDayOfWeek
     ): ScheduleListItem
 }

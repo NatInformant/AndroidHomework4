@@ -1,43 +1,57 @@
 package com.example.myapplication1234.utils
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.myapplication1234.models.LessonListItem
+import com.example.myapplication1234.models.MyDayOfWeek
 import com.example.myapplication1234.models.ScheduleListItem
+import java.time.DayOfWeek
+import java.time.LocalDate
 
 object ScheduleDataUtils {
     private val weekSchedule =
         mapOf<ScheduleListItem.DayTitleListItem, List<ScheduleListItem>>(
             Pair(
-                ScheduleListItem.DayTitleListItem("Понедельник"),
+                ScheduleListItem.DayTitleListItem(MyDayOfWeek.MONDAY),
                 listOf(
                     LessonListItem("Базы Данных (Лек)", "18:20-19:50"),
                     LessonListItem("Базы Данных (Пр)", "19:55-21:25"),
                 )
             ),
             Pair(
-                ScheduleListItem.DayTitleListItem("Вторник"),
+                ScheduleListItem.DayTitleListItem(MyDayOfWeek.TUESDAY),
                 listOf(
                     LessonListItem("Управление IT-проектами и ЖЦ ПО (Лек)", "18:20-19:50"),
                     LessonListItem("Управление IT-проектами и ЖЦ ПО (Пр)", "19:55-21:25"),
                 )
             ),
             Pair(
-                ScheduleListItem.DayTitleListItem("Среда"),
+                ScheduleListItem.DayTitleListItem(MyDayOfWeek.WEDNESDAY),
                 listOf()
             ),
             Pair(
-                ScheduleListItem.DayTitleListItem("Четверг"),
+                ScheduleListItem.DayTitleListItem(MyDayOfWeek.THURSDAY),
                 listOf(
                     LessonListItem("Разработка интернет приложений (Лек)", "19:30-19:50"),
                     LessonListItem("Разработка интернет приложений (Пр)", "19:55-21:25"),
                 )
             ),
             Pair(
-                ScheduleListItem.DayTitleListItem("Пятница"),
+                ScheduleListItem.DayTitleListItem(MyDayOfWeek.FRIDAY),
                 listOf(
                     LessonListItem("Экономика программной инженерии (Пр)", "13:15-14:45"),
                     LessonListItem("Экономика программной инженерии (Лек)", "15:00-16:30"),
                     LessonListItem("Экономика программной инженерии (Пр)", "16:40-18:10"),
                     LessonListItem("Тестирование ПО (Лек)", "19:30-21:00"),
+                )
+            ),
+            Pair(
+                ScheduleListItem.DayTitleListItem(MyDayOfWeek.SATURDAY),
+                listOf(
+                    LessonListItem("Тестирование ПО (Пр)", "11:20-12:50"),
+                    LessonListItem("Тестирование ПО (Пр)", "13:15-14:45"),
+                    LessonListItem("Технологии прикладного программирования (Лек)", "15:00-16:30"),
+                    LessonListItem("Технологии прикладного программирования (Пр)", "16:40-18:10"),
                 )
             )
         )
@@ -59,7 +73,14 @@ object ScheduleDataUtils {
         return resultDaySchedule
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getScheduleForThisDay(): List<ScheduleListItem> {
-        return getDayScheduleFromThisPair(weekSchedule.entries.find { it.key.title == "Среда" }!!.toPair())
+        val currentDayOfWeek = LocalDate.now().dayOfWeek
+        return getDayScheduleFromThisPair(
+            weekSchedule.entries.find { it.key.dayOfWeek.ordinal == currentDayOfWeek.ordinal }
+                ?.toPair() ?: Pair(
+                ScheduleListItem.DayTitleListItem(MyDayOfWeek.SUNDAY), emptyList()
+            )
+        )
     }
 }
