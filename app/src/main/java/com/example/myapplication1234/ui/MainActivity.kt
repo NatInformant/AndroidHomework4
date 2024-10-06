@@ -1,22 +1,11 @@
-package com.example.myapplication1234
+package com.example.myapplication1234.ui
 
-import android.graphics.drawable.GradientDrawable.Orientation
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication1234.R
 import com.example.myapplication1234.databinding.ActivityMainBinding
-import com.example.myapplication1234.databinding.StudentListItemBinding
-import org.w3c.dom.Text
+import com.example.myapplication1234.ui.daySchedule.DayScheduleFragment
+import com.example.myapplication1234.ui.weekSchedule.WeekScheduleFragment
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
@@ -29,13 +18,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportFragmentManager.beginTransaction()
-            .replace(binding.fragmentContainerView.id, RootFragment()).commit()
+            .replace(binding.fragmentContainerView.id, WeekScheduleFragment()).commit()
 
+        setUpBottomNavigationClickListener()
+    }
+
+    private fun setUpBottomNavigationClickListener() {
         binding.bottomNav.setOnItemSelectedListener { menuItem ->
             val fragment = when (menuItem.itemId) {
-                R.id.menu_item_today -> RootFragment()
-                else -> RootFragment()
+                R.id.menu_item_today -> DayScheduleFragment()
+                else -> WeekScheduleFragment()
             }
+
             supportFragmentManager.beginTransaction()
                 .replace(binding.fragmentContainerView.id, fragment).commit()
             true

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id= "@+id/menu_item_today" android:title="Сегодня"/>
-    <item android:id= "@+id/menu_item_week" android:title="Неделя"/>
+    <item
+        android:id="@+id/menu_item_week"
+        android:icon="@drawable/week_bottom_menu_icon"
+        android:title="Неделя" />
+    <item
+        android:id="@+id/menu_item_today"
+        android:icon="@drawable/day_bottom_menu_icon"
+        android:title="Сегодня" />
 </menu>
