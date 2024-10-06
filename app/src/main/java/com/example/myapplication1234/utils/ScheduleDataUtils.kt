@@ -1,11 +1,8 @@
 package com.example.myapplication1234.utils
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.myapplication1234.models.LessonListItem
 import com.example.myapplication1234.models.MyDayOfWeek
 import com.example.myapplication1234.models.ScheduleListItem
-import java.time.DayOfWeek
 import java.time.LocalDate
 
 object ScheduleDataUtils {
@@ -73,7 +70,6 @@ object ScheduleDataUtils {
         return resultDaySchedule
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun getScheduleForThisDay(): List<ScheduleListItem> {
         val currentDayOfWeek = LocalDate.now().dayOfWeek
         return getDayScheduleFromThisPair(

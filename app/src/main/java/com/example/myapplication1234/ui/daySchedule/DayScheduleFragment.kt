@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication1234.databinding.FragmentDayScheduleBinding
-import com.example.myapplication1234.databinding.FragmentWeekScheduleBinding
 import com.example.myapplication1234.ui.adapters.ScheduleAdapter
 import com.example.myapplication1234.utils.ScheduleDataUtils.getScheduleForThisDay
 
