@@ -19,7 +19,7 @@ class DayScheduleFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDayScheduleBinding.inflate(
             inflater, container, false
         )

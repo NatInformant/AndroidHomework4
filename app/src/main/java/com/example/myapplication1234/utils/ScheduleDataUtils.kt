@@ -11,15 +11,25 @@ object ScheduleDataUtils {
             Pair(
                 ScheduleListItem.DayTitleListItem(MyDayOfWeek.MONDAY),
                 listOf(
-                    LessonListItem("Базы Данных (Лек)", "18:20-19:50"),
-                    LessonListItem("Базы Данных (Пр)", "19:55-21:25"),
+                    LessonListItem("Базы Данных (Лек)", "18:20-19:50", "Барабанщиков С.А.", "А-13"),
+                    LessonListItem("Базы Данных (Пр)", "19:55-21:25", "Барабанщиков С.А.", "А-13"),
                 )
             ),
             Pair(
                 ScheduleListItem.DayTitleListItem(MyDayOfWeek.TUESDAY),
                 listOf(
-                    LessonListItem("Управление IT-проектами и ЖЦ ПО (Лек)", "18:20-19:50"),
-                    LessonListItem("Управление IT-проектами и ЖЦ ПО (Пр)", "19:55-21:25"),
+                    LessonListItem(
+                        "Управление IT-проектами и ЖЦ ПО (Лек)",
+                        "18:20-19:50",
+                        "Владислав Воробьёв",
+                        "А-21"
+                    ),
+                    LessonListItem(
+                        "Управление IT-проектами и ЖЦ ПО (Пр)",
+                        "19:55-21:25",
+                        "Владислав Воробьёв",
+                        "А-21"
+                    ),
                 )
             ),
             Pair(
@@ -29,26 +39,36 @@ object ScheduleDataUtils {
             Pair(
                 ScheduleListItem.DayTitleListItem(MyDayOfWeek.THURSDAY),
                 listOf(
-                    LessonListItem("Разработка интернет приложений (Лек)", "19:30-19:50"),
-                    LessonListItem("Разработка интернет приложений (Пр)", "19:55-21:25"),
+                    LessonListItem(
+                        "Разработка интернет приложений (Лек)",
+                        "19:30-19:50",
+                        "Евгений Повлеченков",
+                        "132"
+                    ),
+                    LessonListItem(
+                        "Разработка интернет приложений (Пр)",
+                        "19:55-21:25",
+                        "Евгений Повлеченков",
+                        "132"
+                    ),
                 )
             ),
             Pair(
                 ScheduleListItem.DayTitleListItem(MyDayOfWeek.FRIDAY),
                 listOf(
-                    LessonListItem("Экономика программной инженерии (Пр)", "13:15-14:45"),
-                    LessonListItem("Экономика программной инженерии (Лек)", "15:00-16:30"),
-                    LessonListItem("Экономика программной инженерии (Пр)", "16:40-18:10"),
-                    LessonListItem("Тестирование ПО (Лек)", "19:30-21:00"),
+                    LessonListItem("Экономика программной инженерии (Пр)", "13:15-14:45","Преподаватель","212"),
+                    LessonListItem("Экономика программной инженерии (Лек)", "15:00-16:30", "Преподаватель","212"),
+                    LessonListItem("Экономика программной инженерии (Пр)", "16:40-18:10", "Преподаватель","212"),
+                    LessonListItem("Тестирование ПО (Лек)", "19:30-21:00", "Преподаватель","212"),
                 )
             ),
             Pair(
                 ScheduleListItem.DayTitleListItem(MyDayOfWeek.SATURDAY),
                 listOf(
-                    LessonListItem("Тестирование ПО (Пр)", "11:20-12:50"),
-                    LessonListItem("Тестирование ПО (Пр)", "13:15-14:45"),
-                    LessonListItem("Технологии прикладного программирования (Лек)", "15:00-16:30"),
-                    LessonListItem("Технологии прикладного программирования (Пр)", "16:40-18:10"),
+                    LessonListItem("Тестирование ПО (Пр)", "11:20-12:50", "Преподаватель","212"),
+                    LessonListItem("Тестирование ПО (Пр)", "13:15-14:45", "Преподаватель","212"),
+                    LessonListItem("Технологии прикладного программирования (Лек)", "15:00-16:30", "Преподаватель","212"),
+                    LessonListItem("Технологии прикладного программирования (Пр)", "16:40-18:10","Преподаватель","212"),
                 )
             )
         )
@@ -62,7 +82,7 @@ object ScheduleDataUtils {
         resultDaySchedule.add(pair.first)
 
         if (pair.second.isEmpty()) {
-            resultDaySchedule.add(LessonListItem("Ничего в этот день нету", ""))
+            resultDaySchedule.add(LessonListItem("Ничего в этот день нету", "", "", ""))
         } else {
             resultDaySchedule.addAll(pair.second)
         }

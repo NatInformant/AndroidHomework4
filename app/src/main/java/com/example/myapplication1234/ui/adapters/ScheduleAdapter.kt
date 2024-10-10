@@ -69,6 +69,8 @@ class ScheduleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 binding.lessonTime.visibility = View.GONE
             } else {
                 binding.lessonTime.text = lessonItem.lessonTime
+                binding.lessonTeacher.text = lessonItem.lessonTeacher
+                binding.lessonAuditorium.text = lessonItem.lessonAuditorium
             }
         }
     }
