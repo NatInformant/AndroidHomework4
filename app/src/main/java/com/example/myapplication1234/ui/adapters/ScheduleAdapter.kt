@@ -16,6 +16,7 @@ class ScheduleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun submitValue(list: List<ScheduleListItem>) {
         data = list
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = data.size

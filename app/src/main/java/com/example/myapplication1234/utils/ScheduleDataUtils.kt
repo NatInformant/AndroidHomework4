@@ -188,18 +188,27 @@ object ScheduleDataUtils {
                 )
             )
         )
-    var currentSchedule: Map<ScheduleListItem.DayTitleListItem, List<ScheduleListItem>>? = null;
-    val currentWeekScheduleList by lazy {
-        currentSchedule?.flatMap {
+
+    fun getScheduleForThisWeek(): List<ScheduleListItem> =
+        getCurrentSchedule().flatMap {
             getDayScheduleFromThisPair(it.toPair())
         }
-    }
 
-    fun setUpCurrentSchedule() {
-        currentSchedule = if ((Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) + ChelGuScheduleFixConst) % 2 == ChelGuScheduleFixConst)
+    private fun getCurrentSchedule() =
+        if ((Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) + ChelGuScheduleFixConst) % 2 ==
+            ChelGuScheduleFixConst)
             firstWeekSchedule
         else
             secondWeekSchedule
+
+    fun getScheduleForThisDay(): List<ScheduleListItem> {
+        val currentDayOfWeek = LocalDate.now().dayOfWeek
+        return getDayScheduleFromThisPair(
+            getCurrentSchedule().entries.find { it.key.dayOfWeek.ordinal == currentDayOfWeek.ordinal }
+                ?.toPair() ?: Pair(
+                ScheduleListItem.DayTitleListItem(MyDayOfWeek.SUNDAY), emptyList()
+            )
+        )
     }
 
     private fun getDayScheduleFromThisPair(pair: Pair<ScheduleListItem.DayTitleListItem, List<ScheduleListItem>>): List<ScheduleListItem> {
@@ -214,15 +223,5 @@ object ScheduleDataUtils {
         }
 
         return resultDaySchedule
-    }
-
-    fun getScheduleForThisDay(): List<ScheduleListItem> {
-        val currentDayOfWeek = LocalDate.now().dayOfWeek
-        return getDayScheduleFromThisPair(
-            currentSchedule?.entries?.find { it.key.dayOfWeek.ordinal == currentDayOfWeek.ordinal }
-                ?.toPair() ?: Pair(
-                ScheduleListItem.DayTitleListItem(MyDayOfWeek.SUNDAY), emptyList()
-            )
-        )
     }
 }
