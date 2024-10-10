@@ -67,12 +67,30 @@ class ScheduleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.lessonName.text = lessonItem.lessonName
 
             if (lessonItem.lessonTime == "") {
-                binding.lessonTime.visibility = View.GONE
+                setUpUiInvisible()
             } else {
+                setUpUiVisible()
+
                 binding.lessonTime.text = lessonItem.lessonTime
                 binding.lessonTeacher.text = lessonItem.lessonTeacher
                 binding.lessonAuditorium.text = lessonItem.lessonAuditorium
             }
+        }
+
+        private fun setUpUiInvisible() {
+            binding.lessonTime.visibility = View.GONE
+            binding.lessonTeacherTitle.visibility = View.GONE
+            binding.lessonAuditoriumTitle.visibility = View.GONE
+            binding.lessonTeacher.visibility = View.GONE
+            binding.lessonAuditorium.visibility = View.GONE
+        }
+
+        private fun setUpUiVisible() {
+            binding.lessonTime.visibility = View.VISIBLE
+            binding.lessonTeacherTitle.visibility = View.VISIBLE
+            binding.lessonAuditoriumTitle.visibility = View.VISIBLE
+            binding.lessonTeacher.visibility = View.VISIBLE
+            binding.lessonAuditorium.visibility = View.VISIBLE
         }
     }
 
