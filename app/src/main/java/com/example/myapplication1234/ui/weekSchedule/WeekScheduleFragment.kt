@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication1234.databinding.FragmentWeekScheduleBinding
 import com.example.myapplication1234.ui.adapters.ScheduleAdapter
-import com.example.myapplication1234.utils.ScheduleDataUtils.weekScheduleList
+import com.example.myapplication1234.utils.ScheduleDataUtils.currentWeekScheduleList
+import com.example.myapplication1234.utils.ScheduleDataUtils.setUpCurrentSchedule
 
 class WeekScheduleFragment : Fragment() {
 
@@ -37,6 +38,7 @@ class WeekScheduleFragment : Fragment() {
             adapter = scheduleAdapter
         }
 
-        scheduleAdapter.submitValue(weekScheduleList)
+        setUpCurrentSchedule()
+        scheduleAdapter.submitValue(currentWeekScheduleList?: emptyList())
     }
 }
